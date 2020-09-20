@@ -1,25 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Form = () => {
-    const [product, setProduct] = useState({
-        title: '',
-        price: 0,
-        description: ''
-    })
-    const onSubmitHandler = e => {
-        //prevent default behavior of the submit
-        e.preventDefault();
-        //make a post request to create a new person
-        axios.post('http://localhost:8000/api/products/new', {
-            ...product
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-    }
+const Form = (props) => {
+    const { onSubmitHandler, product, setProduct } = props;
+
     return (
         <div>
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={(e) => onSubmitHandler(e)}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Title</label>
                     <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
