@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "@reach/router"
+import Form from '../components/Form';
 
 import axios from 'axios';
 const Edit = (props) => {
@@ -27,24 +28,7 @@ const Edit = (props) => {
 
     return (
         <div>
-            <form onSubmit={onSubmitHandler}>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Title</label>
-                    <input type="text" value={product.title} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        onChange={(e) => setProduct({ ...product, title: e.target.value })} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Price</label>
-                    <input type="number" value={product.price} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        onChange={(e) => setProduct({ ...product, price: e.target.value })} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Description</label>
-                    <input type="text" value={product.description} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        onChange={(e) => setProduct({ ...product, description: e.target.value })} />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            <Form onSubmitHandler={onSubmitHandler} product={product} setProduct={setProduct} />
         </div>
     )
 }

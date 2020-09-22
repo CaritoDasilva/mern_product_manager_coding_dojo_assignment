@@ -12,6 +12,7 @@ const Home = () => {
         price: 0,
         description: ''
     })
+    const [errors, setErrors] = useState([]);
     const [products, setProducts] = useState([]);
     const onSubmitHandler = e => {
         //prevent default behavior of the submit
@@ -21,7 +22,18 @@ const Home = () => {
             ...product
         })
             .then(res => console.log(res))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                console.log(errorResponse)
+                setErrors(errorArr);
+            })
+
     }
     useEffect(() => {
         axios.get("http://localhost:8000/api/products/")
