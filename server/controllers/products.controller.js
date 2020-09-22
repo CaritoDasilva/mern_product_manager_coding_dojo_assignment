@@ -15,7 +15,8 @@ module.exports.findOneSingleProduct = (req, res) => {
 module.exports.createNewProduct = (req, res) => {
     Product.create(req.body)
         .then(newlyCreatedProduct => res.json({ product: newlyCreatedProduct }))
-        .catch(err => res.json({ message: "Something went wrong", error: err }));
+        // .catch(err => res.json({ message: "Something went wrong", error: err }));
+        .catch(err => res.status(400).json(err))
 };
 
 module.exports.updateExistingProduct = (req, res) => {
